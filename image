@@ -1,0 +1,61 @@
+graph TD
+    %% 定义样式
+    classDef strategic fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000;
+    classDef data fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000;
+    classDef tech fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000;
+    classDef pilot fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000;
+    classDef scale fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000;
+
+    %% 标题节点
+    Start((企业AI智能体<br>实施路径)):::strategic
+
+    %% 第一阶段
+    subgraph Stage1 [第一阶段：战略与场景]
+        direction TB
+        S1_1[高价值场景筛选<br>High-Impact Use Cases]:::strategic
+        S1_2[ROI与KPI设定]:::strategic
+        S1_3[角色定位<br>Copilot vs Autopilot]:::strategic
+    end
+
+    %% 第二阶段
+    subgraph Stage2 [第二阶段：数据基建]
+        direction TB
+        S2_1[非结构化数据清洗<br>Chunking & Cleaning]:::data
+        S2_2[RAG检索增强系统<br>Vector DB + Knowledge Graph]:::data
+        S2_3[数据权限管控<br>ACL Access Control]:::data
+    end
+
+    %% 第三阶段
+    subgraph Stage3 [第三阶段：技术架构]
+        direction TB
+        S3_1[模型选型<br>GPT-4 / DeepSeek / Llama]:::tech
+        S3_2[Agent框架编排<br>LangChain / AutoGen]:::tech
+        S3_3[工具连接<br>API / Function Calling]:::tech
+    end
+
+    %% 第四阶段
+    subgraph Stage4 [第四阶段：开发与试点]
+        direction TB
+        S4_1[提示工程系统化<br>Prompt Engineering]:::pilot
+        S4_2[红队测试与安全<br>Red Teaming]:::pilot
+        S4_3[灰度发布与反馈]:::pilot
+    end
+
+    %% 第五阶段
+    subgraph Stage5 [第五阶段：规模化与治理]
+        direction TB
+        S5_1[集成至工作台<br>IM / OA / ERP]:::scale
+        S5_2[成本监控 FinOps]:::scale
+        S5_3[持续运营 LLMOps<br>日志/评估/人工介入]:::scale
+    end
+
+    %% 连接关系
+    Start --> Stage1
+    Stage1 --> Stage2
+    Stage2 --> Stage3
+    Stage3 --> Stage4
+    Stage4 --> Stage5
+    
+    %% 关键反馈回路
+    S4_3 -.->|优化Prompt与知识库| S4_1
+    S5_3 -.->|数据反哺微调| S3_1
